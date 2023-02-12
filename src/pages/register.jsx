@@ -9,7 +9,7 @@ export default function Register() {
     e.preventDefault();
   }
   return (
-    <>
+    <div className="py-60 md:py-0">
       <AuthLayout
         title={"Bikin akun baru"}
         subTitle="Nggak susah kok, kamu cuma tinggal masukin beberapa data aja terus langsung jadi deh!"
@@ -94,6 +94,6 @@ export default function Register() {
           </Link>
         </p>
       </AuthLayout>
-    </>
+    </div>
   );
 }
