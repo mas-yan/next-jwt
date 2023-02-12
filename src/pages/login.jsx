@@ -63,7 +63,7 @@ export default function Login() {
             </label>
           </div>
           <button
-            className={`${inter.className} w-full mt-8 font-semibold text-base bg-primary-500 py-6 px-48 text-white text-center rounded-md`}
+            className={`${inter.className} w-full mt-8 font-semibold text-base bg-primary-500 py-6 text-white text-center rounded-md`}
           >
             Masuk
           </button>

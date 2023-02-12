@@ -80,7 +80,7 @@ export default function Register() {
             Privacy Policy dari Namanyajugabelajar.io
           </p>
           <button
-            className={`${inter.className} w-full font-semibold text-sm bg-primary-500 py-6 px-48 text-white text-center rounded-md`}
+            className={`${inter.className} w-full font-semibold text-sm bg-primary-500 py-6  text-white text-center rounded-md`}
           >
             Mendaftar
           </button>

@@ -12,7 +12,7 @@ export default function AuthLayout({
     <>
       <div className="flex justify-between">
         <div className="flex justify-center items-center h-screen lg:w-1/2 w-full">
-          <div className="container px:4 md:px-8 lg:px-20">
+          <div className="container px-6 md:px-8 lg:px-20">
             <div className="bg-primary-500 bg-opacity-10 px-3.5 py-2.5 rounded-xl inline-block">
               <h2
                 className={`${inter.className} font-semibold text-xl text-primary-500 block`}
