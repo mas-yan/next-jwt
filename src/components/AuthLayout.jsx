@@ -10,8 +10,8 @@ export default function AuthLayout({
 }) {
   return (
     <>
-      <div className="flex justify-between items-center h-screen">
-        <div className="flex justify-center items-center h-screen lg:w-1/2 w-full">
+      <div className="flex justify-between items-center my-12 md:my-0">
+        <div className="flex justify-center items-center lg:w-1/2 w-full">
           <div className="container px-6 md:px-8 lg:px-20">
             <div className="bg-primary-500 bg-opacity-10 px-3.5 py-2.5 rounded-xl inline-block">
               <h2
