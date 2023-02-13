@@ -1,12 +1,58 @@
 import AuthLayout from "@/components/AuthLayout";
 import { Inter } from "@next/font/google";
 import Link from "next/link";
+import { useState } from "react";
+
+//import router
+import Router from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Register() {
-  function handler(e) {
+  const [field, setField] = useState({
+    name: "",
+    email: "",
+    password: "",
+    password_confirmation: "",
+  });
+  const [error, setError] = useState({
+    name: "",
+    email: "",
+    password: "",
+    password_confirmation: "",
+  });
+
+  function value(e) {
+    const name = e.target.getAttribute("name");
+    setField({
+      ...field,
+      [name]: e.target.value,
+    });
+  }
+  async function handler(e) {
     e.preventDefault();
+
+    const fetchRegister = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BACKEND}/register`,
+      {
+        method: "POST",
+        body: JSON.stringify(field),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (fetchRegister.ok) {
+      Router.push("/login");
+    } else {
+      const res = await fetchRegister.json();
+      setError({
+        name: res.name,
+        email: res.email,
+        password: res.password,
+        password_confirmation: res.password_confirmation,
+      });
+    }
   }
   return (
     <>
@@ -26,9 +72,18 @@ export default function Register() {
             </label>
             <input
               type="text"
+              name="name"
               id="nama"
-              className={`p-5 bg-[#F3F4F6] w-full focus:outline-none rounded-lg mt-2.5 ${inter.className}`}
+              onChange={value}
+              className={`p-5 bg-[#F3F4F6] w-full rounded-lg mt-2.5  ${
+                inter.className
+              } ${
+                error.name
+                  ? "outline outline-red-500 outline-2"
+                  : "focus:outline-none"
+              }`}
             />
+            {error.name && <p className="text-red-500 mt-2">{error.name}</p>}
           </div>
           <div className="mt-8">
             <label
@@ -39,9 +94,16 @@ export default function Register() {
             </label>
             <input
               type="email"
+              name="email"
               id="email"
-              className={`p-5 bg-[#F3F4F6] w-full focus:outline-none rounded-lg mt-2.5 ${inter.className}`}
+              onChange={value}
+              className={`p-5 bg-[#F3F4F6] w-full ${
+                error.email
+                  ? "outline outline-red-500 outline-2"
+                  : "focus:outline-none"
+              } rounded-lg mt-2.5 ${inter.className}`}
             />
+            {error.email && <p className="text-red-500 mt-2">{error.email}</p>}
           </div>
           <div className="mt-8">
             <div className="flex justify-between">
@@ -54,9 +116,18 @@ export default function Register() {
             </div>
             <input
               type="password"
+              name="password"
               id="password"
-              className={`p-5 bg-[#F3F4F6] w-full focus:outline-none rounded-lg mt-2.5 ${inter.className}`}
+              onChange={value}
+              className={`p-5 bg-[#F3F4F6] w-full ${
+                error.password
+                  ? "outline outline-red-500 outline-2"
+                  : "focus:outline-none"
+              } rounded-lg mt-2.5 ${inter.className}`}
             />
+            {error.password && (
+              <p className="text-red-500 mt-2">{error.password}</p>
+            )}
           </div>
           <div className="mt-8">
             <div className="flex justify-between">
@@ -69,9 +140,18 @@ export default function Register() {
             </div>
             <input
               id="pass_conf"
+              onChange={value}
+              name="password_confirmation"
               type="password"
-              className={`p-5 bg-[#F3F4F6] w-full focus:outline-none rounded-lg mt-2.5 ${inter.className}`}
+              className={`p-5 bg-[#F3F4F6] w-full ${
+                error.password_confirmation
+                  ? "outline outline-red-500 outline-2"
+                  : "focus:outline-none"
+              } rounded-lg mt-2.5 ${inter.className}`}
             />
+            {error.password_confirmation && (
+              <p className="text-red-500 mt-2">{error.password_confirmation}</p>
+            )}
           </div>
           <p
             className={`${inter.className} py-8 text-[#4B5563] text-base font-normal mt-2.5`}
