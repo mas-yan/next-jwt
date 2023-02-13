@@ -32,16 +32,13 @@ export default function Register() {
   async function handler(e) {
     e.preventDefault();
 
-    const fetchRegister = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BACKEND}/register`,
-      {
-        method: "POST",
-        body: JSON.stringify(field),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const fetchRegister = await fetch(`${process.env.SERVER}/register`, {
+      method: "POST",
+      body: JSON.stringify(field),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     if (fetchRegister.ok) {
       Router.push("/login");
     } else {
